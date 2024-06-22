@@ -11,8 +11,10 @@ body {
   height: 100vh;
 }
 
-h1 {
-  margin-bottom: 1rem;
+body > h1 {
+  margin: 1.5rem 0;
+  font-family: Helvetica, sans-serif;
+  color: rgb(210, 0, 0);
 }
 
 /* File Input */
