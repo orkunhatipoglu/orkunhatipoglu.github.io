@@ -1,158 +1,132 @@
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+/* General styles */
 body {
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background: black;  /* Set the background to black to match the video */
+  height: 100vh;
 }
 
-body > h1 {
-  margin: 1.5rem 0;
-  font-family: Helvetica, sans-serif;
-  color: rgb(210, 0, 0);
+h1 {
+  margin-bottom: 1rem;
 }
 
+/* File Input */
 #fileInput {
   margin-bottom: 1rem;
 }
 
+/* Video Player */
 .video-player {
-  width: 95%;
-  max-width: 750px;
   position: relative;
-  font-size: 0;
-  overflow: hidden;
-  background: black;  /* Ensure the video player background is also black */
+  max-width: 800px;
+  width: 100%;
 }
 
 .video {
   width: 100%;
+  height: auto;
+  background: #000;
 }
 
-.controls__button {
-  background: none;
-  border: 0;
-  line-height: 1;
-  color: rgb(255, 0, 0);
-  text-align: center;
-  outline: 0;
-  padding: 0;
-  cursor: pointer;
-  max-width: 50px;
-}
-
-.controls__slider {
-  width: 10px;
-  height: 30px;
-}
-
+/* Controls */
 .controls {
-  display: flex;
   position: absolute;
   bottom: 0;
   width: 100%;
-  flex-wrap: wrap;
-  background: rgba(0, 0, 0, 0.1);
-  transform: translateY(0);
-}
-
-.controls > * {
-  flex: 1;
-}
-
-.progress {
-  flex: 10;
-  position: relative;
   display: flex;
-  flex-basis: 100%;
-  height: 5px;
-  background: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  height: 15px;
-}
-
-.progress__filled {
-  width: 50%;
-  background: #a80101;
-  flex: 0;
-  flex-basis: 0%;
-}
-
-input[type="range"] {
-  -webkit-appearance: none;
-  background: transparent;
-  width: 100%;
-  margin: 0 5px;
-}
-
-input[type="range"]:focus {
-  outline: none;
-}
-
-input[type="range"]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 8.4px;
-  cursor: pointer;
-  background: rgba(148, 0, 0, 0.379);
-  border-radius: 4px;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  height: 0.9rem;
-  width: 0.9rem;
-  border-radius: 50px;
-  background: #cc0000;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -3.5px;
-}
-
-input[type="range"]::-moz-range-track {
-  width: 100%;
-  height: 8.4px;
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 4px;
-}
-
-input[type="range"]::-moz-range-thumb {
-  height: 0.9rem;
-  width: 0.9rem;
-  border-radius: 50px;
-  background: #e40202;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -3.5px;
-}
-
-/* Add styles for the fullscreen button */
-.fullscreenButton {
-  max-width: 50px;
-  font-size: 20px;
-}
-
-/* Ensure the video covers the screen in fullscreen mode */
-.video-player:fullscreen .video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Add this new rule */
-.hide-controls .controls {
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.5rem;
   opacity: 0;
   transition: opacity 0.3s;
 }
 
-.hide-controls .controls:hover {
+.video-player:hover .controls {
   opacity: 1;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.current-time, .duration {
+  font-size: 0.9rem;
+  padding: 0 0.5rem;
+}
+
+.progress {
+  position: relative;
+  flex: 1;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.progress__filled {
+  width: 0;
+  height: 100%;
+  background: #e50914;
+  flex-basis: 0;
+}
+
+.progress__circle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: #e50914;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: left 0.1s ease;
+}
+
+.control-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.controls__button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.controls__slider {
+  -webkit-appearance: none;
+  background: #fff;
+  height: 5px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.controls__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  background: #e50914;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.fullscreenButton {
+  font-size: 1.2rem;
+}
+
+/* Hide controls on inactivity */
+.hide-controls .controls {
+  opacity: 0;
 }
