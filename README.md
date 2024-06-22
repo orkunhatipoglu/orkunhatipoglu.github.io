@@ -1,1 +1,0 @@
-# orkunhatipoglu.github.io
